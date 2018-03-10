@@ -142,7 +142,11 @@ elif action == "getdoctimestamp":
 
 ### Step 4 - To verify document uplaod original file and signature to verify form.
 
+![image.png](resources/3A1410D41A482EF3F351D29B980A3815.png)
+
 ### Step 5 - If document was not the same as original file, signature verification will fail.
+
+![image(1).png](resources/716DA20D5C2F270C10E0ECDE91E6C8FB.png)
 
 
 
