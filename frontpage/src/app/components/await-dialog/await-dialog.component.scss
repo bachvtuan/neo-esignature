@@ -1,0 +1,36 @@
+.close-button{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.info-icon-holder {
+    margin-bottom: 60px;
+    height:120px;
+    mat-spinner{
+        margin: 0 auto;
+    }
+    
+    .mat-icon{
+        font-size: 110px;
+        height: auto;
+        width: auto;
+    }
+
+    .error{
+        color: red;
+    }
+
+    .success{
+        color: green;
+    }
+}
+
+.center{
+    text-align: center;
+}
+
+.link{
+    color: blue;
+    text-decoration-line: underline;
+    cursor: pointer;
+}

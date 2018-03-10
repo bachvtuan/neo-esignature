@@ -1,0 +1,99 @@
+
+<div class="wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <div class="logo"></div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between">
+        <!-- Sign -->
+        <mat-card *fuseIfOnDom 
+            [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}"
+            fxLayout="column" fxFlex="50"
+            class="form-container" 
+        >
+            <h3>Sign</h3>
+            <form name="formUpload" [formGroup]="formUpload" novalidate (ngSubmit)="sign($event)">
+                <!-- Address -->
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="address">
+                </mat-form-field>
+
+                <!-- File upload -->
+                <div class="file-upload">
+                    <button mat-raised-button type="button" color="primary" (click)="formUploadFile.click()" [disabled]="loading">Choose File</button>
+                    <span *ngIf="formUpload.get('file')?.value">{{formUpload.get('file').value.name}}</span>
+                    <input #formUploadFile class="hidden" type="file" (change)="onFileChange($event, formUpload)">
+                </div>
+
+                <!-- Metadata -->
+                <mat-form-field>
+                    <input matInput placeholder="Title (optional)" formControlName="title">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Description (optional)" formControlName="description">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Firstname (optional)" formControlName="firstname">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Lastname (optional)" formControlName="lastname">
+                </mat-form-field>
+
+                <button mat-raised-button 
+                    color="accent" 
+                    class="submit-button"
+                    [disabled]="formUpload.invalid"
+                >Submit</button>
+            </form>
+        </mat-card>
+
+
+        <!-- Verify -->
+        <mat-card *fuseIfOnDom 
+            [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}"
+            fxLayout="column" fxFlex="50"
+            class="form-container" 
+        >
+            <h3>Verify</h3>
+            <form name="formVerify" [formGroup]="formVerify" novalidate (ngSubmit)="verify($event)">
+                <!-- Address -->
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="address">
+                </mat-form-field>
+
+                <!-- File upload -->
+                <div class="file-upload">
+                    <button mat-raised-button type="button" color="primary" (click)="formVerifyFile.click()" [disabled]="loading">Select File</button>
+                    <span *ngIf="formVerify.get('file')?.value">{{formVerify.get('file').value.name}}</span>
+                    <input #formVerifyFile class="hidden" type="file" (change)="onFileChange($event, formVerify)">        
+                </div>
+
+                <!-- Signature upload -->
+                <div class="file-upload">
+                    <button mat-raised-button type="button" color="primary" (click)="formVerifySignature.click()" [disabled]="loading">Select Signature</button>
+                    <span *ngIf="formVerify.get('signature')?.value">{{formVerify.get('signature').value.name}}</span>
+                    <input #formVerifySignature class="hidden" type="file" (change)="onFileChange($event, formVerify, 'signature')">        
+                </div>
+
+                <button mat-raised-button 
+                    color="accent" 
+                    class="submit-button"
+                    [disabled]="formVerify.invalid"
+                >Submit</button>
+            </form>
+
+            <div class="verify-signature-container" *ngIf="verifyData && verificationStatus">
+                <div class="verify-signature-status">
+                    <div style="color: green;" *ngIf="verificationStatus == 'valid'">Verification Successful</div>
+                    <div style="color: red;" *ngIf="verificationStatus == 'invalid'">Verification Failed</div>  
+                </div>
+                <div class="verify-signature-label">Signature Parameters</div>
+                <textarea class="verify-signature-data"
+                    matInput 
+                    matTextareaAutosize 
+                    matAutosizeMinRows="2"
+                    matAutosizeMaxRows="10"
+                    disabled
+                >{{verifyData}}</textarea>
+            </div>
+        </mat-card>
+    </div>
+    <div class="footer"></div>
+</div>

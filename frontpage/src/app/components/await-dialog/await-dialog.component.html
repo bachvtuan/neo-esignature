@@ -1,0 +1,51 @@
+<button *ngIf="status != 'pending'" class="close-button" mat-icon-button (click)="close()">
+    <mat-icon>close</mat-icon>
+</button>
+<div class="info-icon-holder">
+    <div class="center" [ngSwitch]="status">
+        <mat-icon class="info-icon error" *ngSwitchCase="'fail'">error_outline</mat-icon>
+        <mat-icon class="info-icon success" *ngSwitchCase="'done'">check_circle</mat-icon>
+        <mat-spinner *ngSwitchCase="'pending'"></mat-spinner>
+    </div>
+</div>
+
+<mat-card>
+    <div class="text" [ngSwitch]="status">
+        <div *ngSwitchCase="'pending'">
+            <ng-container *ngIf="data.action == 'sign'">
+                Please invoke contract address: <strong>{{data.contractHash}}</strong><br/>
+
+                With parameters:
+                <div>
+                    <strong>1. sign</strong>
+                </div>
+                <div>
+                    <strong>2. <br/>[</strong>
+                </div>
+                <div *ngFor="let param of data.params; let i = index">
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;{{param}}</strong>
+                </div>
+                    
+                <div>
+                    <strong>]</strong>
+                </div>
+                The contract must be invoked within 10 minutes<br/>
+                Time left: {{time.timeLeft}}
+            </ng-container>
+    
+            <ng-container  *ngIf="data.action == 'verify'">
+                Please wait while the file gets verified.<br/>
+                This usually takes about a minute
+            </ng-container>
+        </div>
+        <div *ngSwitchCase="'done'">
+            Succesfully uploaded file to blockchain<br/>
+            <a download="signature.json" [href]="downloadUrl">This is your signature file</a>
+        </div>
+        <div *ngSwitchCase="'fail'">
+            An error occured.<br/>
+            {{failReason}}
+        </div>
+    </div>
+
+</mat-card>

@@ -1,0 +1,62 @@
+
+.wrapper{
+    flex: 1 0 auto;
+    padding: 32px;
+    .form-container{
+        width: 430px;
+        max-width: 430px;
+        margin: 32px;
+        padding: 32px;
+        background: rgba(255, 255, 255, 0.144);
+        text-align: left;
+        form {
+            width: 100%;
+            text-align: left;
+        
+            mat-form-field {
+                width: 100%;
+            }
+            .submit-button {
+                width: 220px;
+                display: block;
+            }
+            .file-upload{
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .verify-signature-container{
+        padding-top: 20px;
+        .verify-signature-status{
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .verify-signature-label{
+            padding-bottom: 10px;
+        }
+        .verify-signature-data{
+            box-shadow: 0px 1px 2px 1px;
+        }
+    }
+
+}
+
+.logo{
+    background-image: url(/assets/images/logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 200px;
+    height: 140px;
+}
+
+.footer{
+    background-image: url(/assets/images/footer.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 350px;
+    height: 35px;
+}
